@@ -1,0 +1,61 @@
+.main-card {
+    margin: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: center;
+
+    .factory-node {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 36px;
+    }
+
+    .node {
+        color: #fff;
+        padding: 3px;
+    }
+    .node-root {
+        //height: 20px;
+        //width: 40%;
+        background-color: #673ab7;
+        text-align: left;
+        .node-name {
+            padding: 9px 0px 0px 9px;
+        }
+        .range {
+            padding: 2px 0px 0px 9px;
+        }
+        .spacer {
+            flex-grow: 1;
+        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .children-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        .node-child {
+            //margin: 5px 5px 0px 30px;
+            margin-top: 3px;
+            height: 20px;
+            width: 40px;
+            background-color: #ff4081;      
+        }
+    }
+
+    
+}
+
+#tree-area {
+    overflow-y: scroll;
+    height: 410px;
+}

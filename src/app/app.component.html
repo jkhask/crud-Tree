@@ -1,3 +1,49 @@
-<h1>
-  {{title}}
-</h1>
+<md-toolbar color="primary">
+  Passport Challenge App
+  <span class="app-toolbar-filler"></span>
+</md-toolbar>
+
+<md-card id="tree-area" class="main-card">
+  <div *ngFor="let node of nodes" class="factory-node">
+    <md-card class="node node-root">
+      <span class="node-name">
+        {{node.name}}
+      </span>
+      <span class="range">
+        <md-chip-list>
+        <md-chip>
+          {{node.rangeLo}} - {{node.rangeHi}}
+        </md-chip>
+        </md-chip-list>
+      </span>
+      <span class="spacer"></span>
+      <span class="buttons">
+        <button md-button>EDIT</button>
+        <button md-button>DELETE</button>
+      </span>
+    </md-card>
+    <div class="children-container">
+      <md-card class="node node-child" *ngFor="let child of node.numbers">
+        {{child}}
+      </md-card>
+    </div>
+  </div>
+</md-card>
+
+<md-card class="main-card">
+  <md-input-container>
+    <input mdInput placeholder="Name" [(ngModel)]="input.name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Low Range" [(ngModel)]="input.rangeLo">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="High Range" [(ngModel)]="input.rangeHi">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Amount of Items to Create" [(ngModel)]="input.amt">
+  </md-input-container>
+  <br>
+  <button md-raised-button color="primary" (click)="addNode()">Add a node</button>
+  <button md-raised-button color="accent" (click)="test()">kek</button>
+</md-card>
