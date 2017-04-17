@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
 
     this.nodes.push(newNode);
 
-    this.api.sendTree(this.nodes)
+    this.api.sendNode(newNode)
       .subscribe(res => {
         console.log(res);
       }, error => {

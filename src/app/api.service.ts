@@ -7,12 +7,12 @@ export class ApiService {
 
   constructor(private http: Http) { }
 
-  public sendTree(tree): Observable<any> {
+  public sendNode(node): Observable<any> {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.post(
-      'http://localhost:3000/api/sendTree',
-      JSON.stringify(tree),
+      'http://localhost:3000/api/sendNode',
+      JSON.stringify(node),
       options)
         .map((res: Response) => res.json())
         .catch((error: any) =>
