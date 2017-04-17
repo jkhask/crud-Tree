@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import { UUID } from 'angular2-uuid';
 import { ApiService } from './api.service';
+import * as io from 'socket.io-client';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,8 @@ import { ApiService } from './api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  private socket = io();
+
   private nodes: any;
   private input = {
     name: '',
@@ -23,15 +27,22 @@ export class AppComponent implements OnInit {
 
   public ngOnInit() {
     this.nodes = [];
+    this.getTree();
+    this.socket.on('update', (data) => {
+      console.log('doot');
+      this.getTree();
+    });
+  }
+
+  public getTree() {
     this.api.getTree()
       .subscribe(res => {
-        console.log(res);
         if (res !== undefined) {
           this.nodes = res;
         }
       },
       error => {
-        
+        console.error('Error requesting for tree');
       });
   }
 
@@ -55,7 +66,6 @@ export class AppComponent implements OnInit {
 
     this.api.sendNode(newNode)
       .subscribe(res => {
-        console.log(res);
       }, error => {
         console.error(error);
       });
@@ -67,7 +77,30 @@ export class AppComponent implements OnInit {
     this.input.amt = null;
   }
 
+  public deleteNode(id) {
+    this.api.deleteNode(id)
+      .subscribe(res => {
+        // noop
+      }, error => {
+        console.error(error);
+      });
+  }
+
   public test() {
     console.log(this.nodes);
   }
+
+
+  getInfo() {
+    let observable = new Observable(observer => {
+      this.socket = io('http://localhost:3000');
+      this.socket.on('message', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }  
 }

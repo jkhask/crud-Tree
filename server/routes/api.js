@@ -19,8 +19,6 @@ const nodeSchema = mongoose.Schema(
   }
 );
 
-var testTree = [];
-
 var Node = mongoose.model('Node', nodeSchema);
 
 /* GET api listing. */
@@ -31,21 +29,32 @@ router.get('/', (req, res) => {
 // Get all nodes
 router.get('/getTree', (req, res) => {
   Node.find(function (err, nodes) {
-    if (err) return console.error(err);
+    if (err) res.send(err);
     res.status(200).json(nodes);
   })
-  // res.status(200).json(testTree);
 });
 
 // Add a node
 router.post('/sendNode', (req, res) => {
   var node = new Node(req.body);
   node.save((err, newNode) => {
-    if (err) return console.error(err);
-    res.send(newNode);
+    if (err) return res.send(err);
+    req.app.io.emit('update', {success: true});
+    res.status(200).json(newNode);
   });
-  // testTree = req.body;
-  // res.json(testTree);
+});
+
+// Delete a node
+router.get('/deleteNode/:id', (req, res) => {
+  Node.findOneAndRemove({"id":req.params.id}, (err, deleted) => {
+    if (err) return res.send(err);
+    var response = {
+      message: 'Deleted node.',
+      id: deleted.id
+    }
+    req.app.io.emit('update', { success: true });
+    res.send(response);
+  });
 });
 
 

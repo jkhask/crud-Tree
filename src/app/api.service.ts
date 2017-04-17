@@ -19,6 +19,13 @@ export class ApiService {
           Observable.throw('Unable to connect to server'));
   }
 
+  public deleteNode(id): Observable<any> {
+    return this.http.get(`http://localhost:3000/api/deleteNode/${id}`)
+      .map((res: Response) => res.json())
+      .catch((error: any) =>
+        Observable.throw('Unable to connect to server'));
+  }
+
   public getTree(): Observable<any> {
     return this.http.get('http://localhost:3000/api/getTree')
       .map((res: Response) => res.json())

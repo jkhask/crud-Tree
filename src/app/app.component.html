@@ -19,7 +19,7 @@
       <span class="spacer"></span>
       <span class="buttons">
         <button md-button>EDIT</button>
-        <button md-button>DELETE</button>
+        <button md-button (click)="deleteNode(node.id)">DELETE</button>
       </span>
     </md-card>
     <div class="children-container">
