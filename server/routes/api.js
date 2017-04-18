@@ -15,6 +15,7 @@ const nodeSchema = mongoose.Schema(
     name: String,
     rangeLo: Number,
     rangeHi: Number,
+    amt: Number,
     numbers: [Number]
   }
 );
@@ -41,6 +42,19 @@ router.post('/sendNode', (req, res) => {
     if (err) return res.send(err);
     req.app.io.emit('update', {success: true});
     res.status(200).json(newNode);
+  });
+});
+
+// Edit a node
+router.post('/editNode', (req, res) => {
+  Node.findOneAndUpdate({"id":req.body.id}, {$set:req.body}, (err, old) => {
+    if (err) return res.send(err);
+    var response = {
+      message: 'Edited node.',
+      id: old.id
+    }
+    req.app.io.emit('update', { success: true });
+    res.send(response);
   });
 });
 

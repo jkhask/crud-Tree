@@ -5,12 +5,13 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 
-import { AppComponent } from './app.component';
+import { AppComponent, EditModalComponent } from './app.component';
 import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -18,6 +19,9 @@ import { ApiService } from './api.service';
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
+  ],
+  entryComponents: [
+    EditModalComponent
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

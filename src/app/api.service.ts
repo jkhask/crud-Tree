@@ -19,6 +19,18 @@ export class ApiService {
           Observable.throw('Unable to connect to server'));
   }
 
+  public editNode(node): Observable<any> {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.post(
+      'http://localhost:3000/api/editNode',
+      JSON.stringify(node),
+      options)
+        .map((res: Response) => res.json())
+        .catch((error: any) =>
+          Observable.throw('Unable to connect to server'));
+  }
+
   public deleteNode(id): Observable<any> {
     return this.http.get(`http://localhost:3000/api/deleteNode/${id}`)
       .map((res: Response) => res.json())

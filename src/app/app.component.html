@@ -18,7 +18,7 @@
       </span>
       <span class="spacer"></span>
       <span class="buttons">
-        <button md-button>EDIT</button>
+        <button md-button (click)="editNode(node)">EDIT</button>
         <button md-button (click)="deleteNode(node.id)">DELETE</button>
       </span>
     </md-card>
@@ -45,5 +45,4 @@
   </md-input-container>
   <br>
   <button md-raised-button color="primary" (click)="addNode()">Add a node</button>
-  <button md-raised-button color="accent" (click)="test()">Test</button>
 </md-card>
