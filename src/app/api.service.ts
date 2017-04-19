@@ -6,13 +6,15 @@ import { Observable } from 'rxjs/Rx';
 export class ApiService {
   public changeNode: any;
 
+  private endPoint = 'http://ec2-34-205-75-200.compute-1.amazonaws.com:3000';
+
   constructor(private http: Http) { }
 
   public sendNode(node): Observable<any> {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.post(
-      'http://localhost:3000/api/sendNode',
+      `${this.endPoint}/api/sendNode`,
       JSON.stringify(node),
       options)
         .map((res: Response) => res.json())
@@ -24,7 +26,7 @@ export class ApiService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.post(
-      'http://localhost:3000/api/editNode',
+      `${this.endPoint}/api/editNode`,
       JSON.stringify(node),
       options)
         .map((res: Response) => res.json())
@@ -33,14 +35,14 @@ export class ApiService {
   }
 
   public deleteNode(id): Observable<any> {
-    return this.http.get(`http://localhost:3000/api/deleteNode/${id}`)
+    return this.http.get(`${this.endPoint}/api/deleteNode/${id}`)
       .map((res: Response) => res.json())
       .catch((error: any) =>
         Observable.throw('Unable to connect to server'));
   }
 
   public getTree(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/getTree')
+    return this.http.get(`${this.endPoint}/api/api/getTree`)
       .map((res: Response) => res.json())
       .catch((error: any) =>
         Observable.throw('Unable to connect to server'));
