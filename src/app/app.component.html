@@ -4,6 +4,7 @@
 </md-toolbar>
 
 <md-card id="tree-area" class="main-card">
+  <h2>Root</h2>
   <div *ngFor="let node of nodes" class="factory-node">
     <md-card class="node node-root">
       <span class="node-name">
@@ -12,7 +13,7 @@
       <span class="range">
         <md-chip-list>
         <md-chip>
-          {{node.rangeLo}} - {{node.rangeHi}}
+          {{node.rangeLo}} : {{node.rangeHi}}
         </md-chip>
         </md-chip-list>
       </span>
@@ -41,7 +42,7 @@
     <input mdInput type="number" placeholder="High Range" [(ngModel)]="input.rangeHi">
   </md-input-container>
   <md-input-container>
-    <input mdInput type="number" placeholder="Amount of Items to Create" [(ngModel)]="input.amt">
+    <input mdInput type="number" placeholder="Amount of Items to Create" [(ngModel)]="input.amt" max="15">
   </md-input-container>
   <br>
   <button md-raised-button color="primary" (click)="addNode()">Add a node</button>

@@ -50,8 +50,7 @@ router.post('/editNode', (req, res) => {
   Node.findOneAndUpdate({"id":req.body.id}, {$set:req.body}, (err, old) => {
     if (err) return res.send(err);
     var response = {
-      message: 'Edited node.',
-      id: old.id
+      message: 'Edited node.'
     }
     req.app.io.emit('update', { success: true });
     res.send(response);

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class ApiService {
+  public changeNode: any;
 
   constructor(private http: Http) { }
 
