@@ -3,7 +3,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 96%;
     text-align: center;
 
     .factory-node {
@@ -33,14 +33,13 @@
         }
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
         justify-content: space-between;
     }
 
     .children-container {
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: space-between;
 
         .node-child {
