@@ -146,6 +146,10 @@ export class AppComponent implements OnInit {
       this.snackBar.open('Please give the node a name.', 'OK', {duration: 3000});
       return false;
     }
+    if (node.name.length > 35) {
+      this.snackBar.open('Node names are limited to 35 characters.', 'OK', { duration: 3000 });
+      return false;
+    }
     if (node.amt > 15) {
       this.snackBar.open('There is a maximum of 15 items per node.', 'OK', {duration: 3000});
       return false;

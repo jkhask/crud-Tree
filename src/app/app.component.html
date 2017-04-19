@@ -3,6 +3,23 @@
   <span class="app-toolbar-filler"></span>
 </md-toolbar>
 
+<md-card class="main-card">
+  <md-input-container>
+    <input mdInput placeholder="Name" [(ngModel)]="input.name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Low Range" [(ngModel)]="input.rangeLo">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="High Range" [(ngModel)]="input.rangeHi">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Amount of Items to Create" [(ngModel)]="input.amt" max="15">
+  </md-input-container>
+  <br>
+  <button md-raised-button color="primary" (click)="addNode()">Add a node</button>
+</md-card>
+
 <md-card id="tree-area" class="main-card">
   <h2>Root</h2>
   <div *ngFor="let node of nodes" class="factory-node">
@@ -29,21 +46,4 @@
       </md-card>
     </div>
   </div>
-</md-card>
-
-<md-card class="main-card">
-  <md-input-container>
-    <input mdInput placeholder="Name" [(ngModel)]="input.name">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput type="number" placeholder="Low Range" [(ngModel)]="input.rangeLo">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput type="number" placeholder="High Range" [(ngModel)]="input.rangeHi">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput type="number" placeholder="Amount of Items to Create" [(ngModel)]="input.amt" max="15">
-  </md-input-container>
-  <br>
-  <button md-raised-button color="primary" (click)="addNode()">Add a node</button>
 </md-card>
