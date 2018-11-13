@@ -1,6 +1,6 @@
-# Passport
+# CRUD Tree
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+This is a simple app that allows users to add nodes to a tree in real time. MEAN tech stack.
 
 ## Development server
 
